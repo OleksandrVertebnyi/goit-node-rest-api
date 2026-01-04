@@ -5,3 +5,4 @@ const HttpError = (status, message) => {
 };
 
 export default HttpError;
+
