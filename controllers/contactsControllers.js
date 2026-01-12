@@ -30,7 +30,6 @@ export const getContactById = async (req, res, next) => {
 
 export const addContact = async (req, res, next) => {
   try {
-    const { name, email, phone } = req.body;
     const newContact = await contactsServices.addContact(req.body);
     res.status(201).json(newContact);
   } catch (error) {
