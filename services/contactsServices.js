@@ -1,14 +1,14 @@
-import fs from 'fs/promises';
-import path from 'path';
-import crypto from 'crypto';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import crypto from 'node:crypto';
 
 const contactsPath = path.resolve('db', 'contacts.json');
 
-const listContacts = async () => {
+export const listContacts = async () => {
   try {
     const data = await fs.readFile(contactsPath, 'utf-8');
     return JSON.parse(data);
-  } catch {
+  } catch (error) {
     return [];
   }
 };
@@ -16,8 +16,6 @@ const listContacts = async () => {
 const writeContacts = async (contacts) => {
   await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
 };
-
-export const getAllContacts = listContacts;
 
 export const getContactById = async (id) => {
   const contacts = await listContacts();
@@ -49,5 +47,7 @@ export const updateContact = async (id, data) => {
   await writeContacts(contacts);
   return contacts[index];
 };
+
+
 
 

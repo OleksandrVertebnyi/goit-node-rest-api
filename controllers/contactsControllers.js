@@ -1,77 +1,53 @@
-import * as contactsServices from "../services/contactsServices.js";
-import HttpError from "../helpers/HttpError.js";
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import crypto from 'node:crypto';
 
+const contactsPath = path.resolve('db', 'contacts.json');
 
-export const getAllContacts = async (req, res, next) => {
+export const listContacts = async () => {
   try {
-    const contacts = await contactsServices.listContacts();
-    res.status(200).json(contacts);
+    const data = await fs.readFile(contactsPath, 'utf-8');
+    return JSON.parse(data);
   } catch (error) {
-    next(error); 
+    return [];
   }
 };
 
-
-export const getContactById = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const contact = await contactsServices.getContactById(id);
-
-    if (!contact) {
-      throw HttpError(404, "Not found");
-    }
-
-    res.status(200).json(contact);
-  } catch (error) {
-    next(error);
-  }
+const writeContacts = async (contacts) => {
+  await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
 };
 
-
-export const addContact = async (req, res, next) => {
-  try {
-    const newContact = await contactsServices.addContact(req.body);
-    res.status(201).json(newContact);
-  } catch (error) {
-    next(error);
-  }
+export const getContactById = async (id) => {
+  const contacts = await listContacts();
+  return contacts.find(c => c.id === id) || null;
 };
 
-
-export const removeContact = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const removedContact = await contactsServices.removeContact(id);
-
-    if (!removedContact) {
-      throw HttpError(404, "Not found");
-    }
-
-    res.status(200).json(removedContact);
-  } catch (error) {
-    next(error);
-  }
+export const addContact = async (data) => {
+  const contacts = await listContacts();
+  const newContact = { id: crypto.randomUUID(), ...data };
+  contacts.push(newContact);
+  await writeContacts(contacts);
+  return newContact;
 };
 
-
-export const updateContact = async (req, res, next) => {
-  try {
-    if (Object.keys(req.body).length === 0) {
-      throw HttpError(400, "Body must have at least one field");
-    }
-
-    const { id } = req.params;
-    const updatedContact = await contactsServices.updateContact(id, req.body);
-
-    if (!updatedContact) {
-      throw HttpError(404, "Not found");
-    }
-
-    res.status(200).json(updatedContact);
-  } catch (error) {
-    next(error);
-  }
+export const removeContact = async (id) => {
+  const contacts = await listContacts();
+  const index = contacts.findIndex(c => c.id === id);
+  if (index === -1) return null;
+  const [removed] = contacts.splice(index, 1);
+  await writeContacts(contacts);
+  return removed;
 };
+
+export const updateContact = async (id, data) => {
+  const contacts = await listContacts();
+  const index = contacts.findIndex(c => c.id === id);
+  if (index === -1) return null;
+  contacts[index] = { ...contacts[index], ...data };
+  await writeContacts(contacts);
+  return contacts[index];
+};
+
 
 
 
