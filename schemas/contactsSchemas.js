@@ -1,5 +1,9 @@
 import Joi from "joi";
 
+export const updateFavoriteSchema = Joi.object({
+  favorite: Joi.boolean().required(),
+});
+
 export const createContactSchema = Joi.object({
   name: Joi.string().required(),
   email: Joi.string().email().required(),
@@ -11,4 +15,6 @@ export const updateContactSchema = Joi.object({
   email: Joi.string().email(),
   phone: Joi.string(),
 });
+
+
 

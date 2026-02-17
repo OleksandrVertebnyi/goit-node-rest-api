@@ -15,6 +15,9 @@ export const getContactById = async (req, res, next) => {
   try {
     const { id } = req.params;
 
+    console.log('ID:', '[' + id + ']');
+    console.log('Length:', id.length);
+
     const contact = await contactsServices.getContactById(id);
     if (!contact) {
       return next(HttpError(404, 'Not found'));
@@ -64,6 +67,25 @@ export const updateContact = async (req, res, next) => {
     next(error);
   }
 };
+
+export const updateFavorite = async (req, res, next) => {
+  try {
+    const { contactId } = req.params;
+    const result = await contactsServices.updateStatusContact(
+      contactId,
+      req.body
+    );
+
+    if (!result) {
+      return next(HttpError(404, 'Not found'));
+    }
+
+    res.status(200).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
 
 
 

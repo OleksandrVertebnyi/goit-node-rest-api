@@ -1,0 +1,108 @@
+[{
+  "_id": {
+    "$oid": "698006d6a6be2eccb07b7fc9"
+  },
+  "id": "2",
+  "name": "Jane Smith",
+  "email": "jane@example.com",
+  "phone": "987-654-3210"
+},
+{
+  "_id": {
+    "$oid": "698006d6a6be2eccb07b7fca"
+  },
+  "id": "64d20711-c05a-473b-8f00-7b294d4ad93e",
+  "name": "Alice Johnson",
+  "email": "alice@example.com",
+  "phone": "555-1234"
+},
+{
+  "_id": {
+    "$oid": "6993c10076e19212b843ed44"
+  },
+  "name": "Allen Raymond",
+  "email": "nulla.ante@vestibul.co.uk",
+  "phone": "(992) 914-3792",
+  "favorite": false
+},
+{
+  "_id": {
+    "$oid": "6993c10076e19212b843ed45"
+  },
+  "name": "Chaim Lewis",
+  "email": "dui.in@egetlacus.ca",
+  "phone": "(294) 840-6685",
+  "favorite": true
+},
+{
+  "_id": {
+    "$oid": "6993c10076e19212b843ed46"
+  },
+  "name": "Kennedy Lane",
+  "email": "mattis.Cras@nonenimMauris.net",
+  "phone": "(542) 451-7038",
+  "favorite": false
+},
+{
+  "_id": {
+    "$oid": "6993c10076e19212b843ed47"
+  },
+  "name": "Wylie Pope",
+  "email": "est@utquamvel.net",
+  "phone": "(692) 802-2949",
+  "favorite": true
+},
+{
+  "_id": {
+    "$oid": "6993c10076e19212b843ed48"
+  },
+  "name": "Cyrus Jackson",
+  "email": "nibh@semsempererat.com",
+  "phone": "(501) 472-5218",
+  "favorite": true
+},
+{
+  "_id": {
+    "$oid": "6993c10076e19212b843ed49"
+  },
+  "name": "Abbot Franks",
+  "email": "scelerisque@magnis.org",
+  "phone": "(186) 568-3720",
+  "favorite": true
+},
+{
+  "_id": {
+    "$oid": "6993c10076e19212b843ed4a"
+  },
+  "name": "Reuben Henry",
+  "email": "pharetra.ut@dictum.co.uk",
+  "phone": "(715) 598-5792",
+  "favorite": true
+},
+{
+  "_id": {
+    "$oid": "6993c10076e19212b843ed4b"
+  },
+  "name": "Simon Morton",
+  "email": "dui.Fusce.diam@Donec.com",
+  "phone": "(233) 738-2360",
+  "favorite": true
+},
+{
+  "_id": {
+    "$oid": "6993c10076e19212b843ed4c"
+  },
+  "name": "Thomas Lucas",
+  "email": "nec@Nulla.com",
+  "phone": "(704) 398-7993",
+  "favorite": false
+},
+{
+  "_id": {
+    "$oid": "6993c10076e19212b843ed4d"
+  },
+  "name": "Alec Howard",
+  "email": "Donec.elementum@scelerisquescelerisquedui.net",
+  "phone": "(748) 206-2688",
+  "favorite": true
+}]
