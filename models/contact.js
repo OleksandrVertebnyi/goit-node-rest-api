@@ -16,6 +16,13 @@ const contactSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+
+    // 🔐 ВАЖНО — вот это поле
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'user',
+      required: true, // ← лучше добавить
+    },
   },
   {
     versionKey: false,
@@ -26,4 +33,3 @@ const contactSchema = new mongoose.Schema(
 const Contact = mongoose.model('Contact', contactSchema);
 
 export default Contact;
-

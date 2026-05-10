@@ -17,20 +17,25 @@ import {
   updateFavoriteSchema,
 } from '../schemas/contactsSchemas.js';
 
+import auth from '../middlewares/auth.js';
+
 const router = express.Router();
 
-router.get('/', getAllContacts);
+// ВСЕ роуты с auth
 
-router.get('/:id', getContactById);
+router.get('/', auth, getAllContacts);
 
-router.post('/', validateBody(createContactSchema), addContact);
+router.get('/:id', auth, getContactById);
 
-router.delete('/:id', removeContact);
+router.post('/', auth, validateBody(createContactSchema), addContact);
 
-router.put('/:id', validateBody(updateContactSchema), updateContact);
+router.delete('/:id', auth, removeContact);
+
+router.put('/:id', auth, validateBody(updateContactSchema), updateContact);
 
 router.patch(
   '/:contactId/favorite',
+  auth,
   validateBody(updateFavoriteSchema),
   updateFavorite
 );
