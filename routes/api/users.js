@@ -1,6 +1,8 @@
-g
+
 
 import express from 'express';
+import upload from '../../middlewares/upload.js';
+import { updateAvatar } from '../../controllers/usersControllers.js';
 
 import {
   register,
@@ -27,5 +29,12 @@ router.post('/login', validateBody(loginSchema), login);
 router.post('/logout', auth, logout);
 
 router.get('/current', auth, getCurrent);
+
+router.patch(
+  '/avatars',
+  auth,
+  upload.single('avatar'),
+  updateAvatar
+);
 
 export default router;
